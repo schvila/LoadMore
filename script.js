@@ -1,4 +1,4 @@
-var data = {
+const data = {
     "Entries": [
         {
             "Title": "entry1",
