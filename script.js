@@ -42,32 +42,32 @@ const data = {
     }
 }
 function InitialLoad() {
-    
-    var loadMoreBtn = document.getElementById('load-more');
-    if (data.Entries.length > data.Pages.PageSize) {
-        loadMoreBtn.addEventListener('click', () => {
-            data.Pages.Page++;
-            LoadPage();
-        });
-    }
-    else {
-        loadMoreBtn.style.display = 'none';
-    }
-    LoadPage();
+  var loadMoreBtn = document.getElementById("load-more");
+  if (data.Entries.length > data.Pages.PageSize) {
+    loadMoreBtn.addEventListener("click", () => {
+      data.Pages.Page++;
+      LoadPage();
+    });
+  } else {
+    loadMoreBtn.style.display = "none";
+  }
+  LoadPage();
 }
 function LoadPage() {
- var start = (data.Pages.Page-1)*data.Pages.PageSize;
- var end = (data.Pages.Page-1)*data.Pages.PageSize +data.Pages.PageSize;
- var pageEntries = data.Entries.slice(start,end);
- var recentUpdates = document.getElementById('recent-updates');
- recentUpdates.innerHTML = pageEntries.map(entry=>createHmlEntry(entry)).join('');
- if(end > data.Entries.length){
-    var loadMoreBtn = document.getElementById('load-more');
-    loadMoreBtn.style.display = 'none';
- }
+  var start = (data.Pages.Page - 1) * data.Pages.PageSize;
+  var end = (data.Pages.Page - 1) * data.Pages.PageSize + data.Pages.PageSize;
+  var pageEntries = data.Entries.slice(start, end);
+  var recentUpdates = document.getElementById("recent-updates");
+  recentUpdates.innerHTML = pageEntries
+    .map((entry) => createHmlEntry(entry))
+    .join("");
+  if (end >= data.Entries.length) {
+    var loadMoreBtn = document.getElementById("load-more");
+    loadMoreBtn.style.display = "none";
+  }
 }
 function createHmlEntry(entry) {
-    var newDiv = `<div class = "md:border-none border-b border-lightGray">
+  var newDiv = `<div class = "md:border-none border-b border-lightGray">
                     <p class="mb-1">${entry.ModifiedDateFormated}</p>
                     <p class="ellipsis font-bold mb-2">${entry.Title}</p>
                     <p class="text-[#929497] font-bold mb-4">Type: <span class="font-normal">${entry.Type}</span></p>
@@ -75,6 +75,6 @@ function createHmlEntry(entry) {
                         <a class="text-orange font-bold hover:text-orangeDarker active:text-orangeDarkest" href="${entry.Url}">Show</a>
                     </p>
                 </div>`;
-    return newDiv;
+  return newDiv;
 }
 InitialLoad();
