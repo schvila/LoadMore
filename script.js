@@ -67,7 +67,7 @@ function LoadPage() {
   }
 }
 function createHmlEntry(entry) {
-  var newDiv = `<div class = "md:border-none border-b border-lightGray">
+  return `<div class = "md:border-none border-b border-lightGray">
                     <p class="mb-1">${entry.ModifiedDateFormated}</p>
                     <p class="ellipsis font-bold mb-2">${entry.Title}</p>
                     <p class="text-[#929497] font-bold mb-4">Type: <span class="font-normal">${entry.Type}</span></p>
@@ -75,6 +75,5 @@ function createHmlEntry(entry) {
                         <a class="text-orange font-bold hover:text-orangeDarker active:text-orangeDarkest" href="${entry.Url}">Show</a>
                     </p>
                 </div>`;
-  return newDiv;
 }
 InitialLoad();
